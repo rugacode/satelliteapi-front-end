@@ -1,0 +1,13 @@
+npm install @angular/cli@6.1
+
+ng new satelliteapi-front-end
+
+npm install bootstrap jquery popper.js
+
+ng g c core/header
+
+ng g c core/footer
+
+ng g s services/above
+
+ng g c above/above-sticky-top

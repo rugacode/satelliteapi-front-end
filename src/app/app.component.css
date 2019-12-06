@@ -1,0 +1,24 @@
+.sortable-column {
+    position: relative;
+    cursor: pointer;
+}
+
+.sortable-column::after {
+    font-family: FontAwesome;
+    content: '\f0dc';
+    position: absolute;
+    right: 8px;
+    color: #999;
+}
+
+.sortable-column.asc::after {
+    content: '\f0d8';
+}
+
+.sortable-column.desc::after {
+    content: '\f0d7';
+}
+
+.sortable-column:hover::after {
+    color: #333;
+}
