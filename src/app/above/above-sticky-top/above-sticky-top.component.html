@@ -5,50 +5,48 @@
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        
-        <!--<form class="form-inline">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" (input)="search($event)">
-        </form>-->
       </nav>
       
       <div class="collapse" id="navbarToggleExternalContent">
         <div class="bg-dark p-4">
           
-          <div class="row">
-            <div class="col">
+          <form class="row" [formGroup]="aboveForm">
+            
+            <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
               <label class="text-white" for="name">Observer's latitide</label>
-              <input class="form-control mr-sm-2" type="number" id="observer_lat" placeholder="Observer's latitide (decimal degrees format)">
+              <input class="form-control mr-sm-2" type="number" id="observer_lat" formControlName="observer_lat" placeholder="Observer's latitide (decimal degrees format)">
             </div>
             
-            <div class="col">
+            <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
               <label class="text-white" for="name">Observer's longitude</label>
-              <input class="form-control mr-sm-2" type="number" id="observer_lng" placeholder="Observer's longitude (decimal degrees format)">
+              <input class="form-control mr-sm-2" type="number" id="observer_lng" formControlName="observer_lng" placeholder="Observer's longitude (decimal degrees format)">
             </div>
             
-            <div class="col">
+            <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
               <label class="text-white" for="name">Observer's altitude</label>
-              <input class="form-control mr-sm-2" type="number" id="observer_alt" placeholder="Observer's altitude above sea level in meters">
+              <input class="form-control mr-sm-2" type="number" id="observer_alt" formControlName="observer_alt" placeholder="Observer's altitude above sea level in meters">
             </div>
             
-            <div class="col">
+            <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
               <label class="text-white" for="name">Search radius</label>
-              <input class="form-control mr-sm-2" type="number" id="search_radius" placeholder="Search radius (0-90)">
+              <input class="form-control mr-sm-2" type="number" id="search_radius" formControlName="search_radius" placeholder="Search radius (0-90)">
             </div>
             
-            <div class="col">
-              
+            <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
               <label class="text-white" for="category_id">Categories</label>
-              <select id="category_id" class="form-control">
-                <option value="default" selected>Default</option>
+              <select class="form-control" id="category_id" formControlName="category_id">
+                <option value="0" selected>Default</option>
                 <option *ngFor="let catgory of categories" value="{{ catgory.id }}">{{ catgory.catgory | titlecase }}</option>
               </select>
-            
             </div>
           
-          </div>
-
+          </form>
+          
           <div class="row">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+              <p class="text-white">Form Status: {{ aboveForm.status }}</p>
+              <button class="btn btn-primary btn-sm pull-right" type="submit" id="search" [disabled]="!aboveForm.valid" (click)="fetchSatellites($event)">Search</button>
+            </div>
           </div>
         
         </div>

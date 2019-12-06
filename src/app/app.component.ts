@@ -47,6 +47,8 @@ export class AppComponent {
     }
   ];
 
+  requestParams: object;
+
   constructor(
     private titleService: Title,
     private aboveService: AboveService
@@ -56,6 +58,8 @@ export class AppComponent {
     this.titleService.setTitle(this.title);
 
     this.satellites$ = this.aboveService.getAbove();
+
+    this.requestParams = this.aboveService.getRequestParams();
   }
 
   sorting(event) {
@@ -80,5 +84,10 @@ export class AppComponent {
       target.classList.add('desc');
       this.satellites$ = this.aboveService.sorting(this.satellites$, this.tableHeadersData[target.id], 'desc');
     }
+  }
+
+  onFetch(event) {
+    this.aboveService.setRequestParams(event);
+    this.satellites$ = this.aboveService.getAbove();
   }
 }

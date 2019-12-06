@@ -1,6 +1,8 @@
 <app-header></app-header>
 
-<app-above-sticky-top></app-above-sticky-top>
+<div *ngIf='requestParams'>
+  <app-above-sticky-top (fetch)="onFetch($event)" [sendRequestParams]="requestParams"></app-above-sticky-top>
+</div>
 
 <div class="card text-center">
   <!--<div class="card-header"></div>-->

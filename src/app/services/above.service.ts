@@ -17,13 +17,38 @@ export class AboveService {
   search_radius: number = 90;
   category_id: number = 0;
   apiKey: string = 'R2CQLF-FTC39A-HFHR2W-33JE';
-  request: string = `https://www.n2yo.com/rest/v1/satellite/above/${this.observer_lat}/${this.observer_lng}/${this.observer_alt}/${this.search_radius}/${this.category_id}`;
+  request: string;
   headers = new HttpHeaders();
   params = new HttpParams().set('apiKey', this.apiKey);
   
   constructor(
     private httpClient: HttpClient
-  ) {}
+  ) {
+    this.setRequest();
+  }
+
+  setRequestParams(requestParams) {
+    this.observer_lat = requestParams.observer_lat;
+    this.observer_lng = requestParams.observer_lng;
+    this.observer_alt = requestParams.observer_alt;
+    this.search_radius = requestParams.search_radius;
+    this.category_id = requestParams.category_id;
+    this.setRequest();
+  }
+
+  getRequestParams() {
+    return {
+      observer_lat: this.observer_lat,
+      observer_lng: this.observer_lng,
+      observer_alt: this.observer_alt,
+      search_radius: this.search_radius,
+      category_id: this.category_id
+    };
+  }
+
+  setRequest() {
+    this.request = `https://www.n2yo.com/rest/v1/satellite/above/${this.observer_lat}/${this.observer_lng}/${this.observer_alt}/${this.search_radius}/${this.category_id}`;
+  }
 
   getAbove(): Observable<any> {
     return this
