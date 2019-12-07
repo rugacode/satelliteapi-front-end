@@ -50,7 +50,7 @@ export class AboveService {
     this.request = `https://www.n2yo.com/rest/v1/satellite/above/${this.observer_lat}/${this.observer_lng}/${this.observer_alt}/${this.search_radius}/${this.category_id}`;
   }
 
-  getAbove(): Observable<any> {
+  getAbove(): Observable<any[]> {
     return this
     .httpClient
     .get(this.request,
@@ -70,7 +70,7 @@ export class AboveService {
     );
   }
   
-  sorting(satellites$: Observable<any>, tableHeaderData: object, orderBy: string) {
+  sorting(satellites$: Observable<any[]>, tableHeaderData: object, orderBy: string) {
     return satellites$
     .pipe(
       map(satellite => {

@@ -1,17 +1,14 @@
 <app-header></app-header>
 
-<div *ngIf='requestParams'>
-  <app-above-sticky-top (fetch)="onFetch($event)" [sendRequestParams]="requestParams"></app-above-sticky-top>
-</div>
+<app-above-sticky-top (fetch)="onFetch($event)" [sendRequestParams]="requestParams"></app-above-sticky-top>
 
 <div class="card text-center">
-  <!--<div class="card-header"></div>-->
   <div class="card-body table-responsive">
     <table class="table table-sm table-bordered">
       <thead class="table-primary">
         <tr>
-          <ng-container *ngFor="let tableHeaderData of tableHeadersData; let i = index;">
-              <th scope="col" class="sortable-column" [id]="i" (click)="sorting($event)">{{ tableHeaderData.headerName }}</th>
+          <ng-container *ngFor="let header of headers; let i = index;">
+              <th scope="col" class="sortable-column" [id]="i" (click)="sorting($event)">{{ header.headerName }}</th>
           </ng-container>
         </tr>
       </thead>
@@ -27,7 +24,6 @@
       </tbody>
     </table>
   </div>
-  <!--<div class="card-footer"></div>-->
 </div>
 
 <app-footer></app-footer>
