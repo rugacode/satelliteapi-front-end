@@ -37,7 +37,7 @@ export class AboveStickyTopComponent implements OnInit {
     this.aboveForm.setValue(this.sendRequestParams);
   }
 
-  fetchSatellites() {
+  fetchSatellites(event) {
     this.fetch.emit(this.aboveForm.value);
   }
 }
